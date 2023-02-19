@@ -1,0 +1,83 @@
+<!--
+  Archivo de definicion de vehículo
+  Pensado para ser incluido en archivos XML tipo mundo 
+  Los sensores se pueden incluir aqui, pero se dejan para ser incluidos en instancias de clase.
+-->
+<vehicle:class name="Portero_rojo">
+    <!--  Modelo dinámico -->
+    <dynamics class="differential_4_wheels"> <!--  diferencial con 4 ruedas -->
+        <!-- Parametros -->
+        <!--Ruedas frontales -->
+          <lf_wheel pos="0.125  0.2" mass="1.0" width="0.05" diameter="0.12">
+            <visual>
+                <model_uri>../models/Rueda_msl.dae</model_uri> <!-- Modelo 3D de la rueda-->
+                <model_yaw>0.0</model_yaw>
+                <model_pitch>0.0</model_pitch>
+                <model_roll>0.0</model_roll>
+            </visual>
+          </lf_wheel>
+          <rf_wheel pos="0.125 -0.2" mass="1.0" width="0.05" diameter="0.12">
+            <visual> 
+                <model_uri>../models/Rueda_msl.dae</model_uri> 
+                <model_yaw>0.0</model_yaw>
+                <model_pitch>0.0</model_pitch>
+                <model_roll>0.0</model_roll>
+            </visual>
+          </rf_wheel>
+          <!-- Ruedas traseras-->
+          <lr_wheel pos="-0.125  0.2" mass="1.0" width="0.05" diameter="0.12">
+            <visual> 
+                <model_uri>../models/Rueda_msl.dae</model_uri>
+                <model_yaw>0.0</model_yaw>
+                <model_pitch>0.0</model_pitch>
+                <model_roll>0.0</model_roll>
+             </visual>
+          </lr_wheel>
+          <rr_wheel pos="-0.125 -0.2" mass="1.0" width="0.05" diameter="0.12">
+            <visual> 
+                <model_uri>../models/Rueda_msl.dae</model_uri>
+                <model_yaw>0.0</model_yaw>
+                <model_pitch>0.0</model_pitch>
+                <model_roll>0.0</model_roll> 
+            </visual>
+          </rr_wheel>
+
+
+          <chassis mass="15.0" zmin="0.0" zmax="0.9"> <!-- Caracteristicas del chasis-->
+            <shape_from_visual/> <!-- Tamaño automatico del modelo 3D  -->
+        </chassis>
+
+
+        <!--  Controlador del motor -->
+        <controller class="twist_pid">
+            <!-- Parametros controlador PID -->
+            <KP>5</KP>  <KI>10</KI> <I_MAX>1</I_MAX> <KD>0</KD>
+            <V>0.0</V><W>0</W>
+            <max_torque>100</max_torque>
+        </controller>
+
+
+
+    </dynamics>
+
+    <!-- Simulacion de fuerzas de friccion -->
+    <friction class="default">
+        <mu>0.7</mu>
+        <C_damping>0.1</C_damping>
+    </friction>
+
+
+    <visual>
+        <model_uri>../models/Portero_rojo.dae</model_uri> <!-- Diseño 3D del cuerpo del robot-->
+        <model_yaw>90.0</model_yaw>
+        <model_pitch>0.0</model_pitch>
+        <model_roll>0.0</model_roll>
+    </visual>
+    <!--<friction class="wardiagnemma">
+        <mu>0.7</mu>
+        <C_damping>10</C_damping>
+        <A_roll>50</A_roll>
+        <R1>0.0075</R1>
+        <R2>0.02</R2>
+    </friction>-->
+</vehicle:class>

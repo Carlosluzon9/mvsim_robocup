@@ -1,0 +1,390 @@
+Panels:
+  - Class: rviz/Displays
+    Help Height: 0
+    Name: Displays
+    Property Tree Widget:
+      Expanded:
+        - /Global Options1
+        - /Status1
+        - /TF1
+      Splitter Ratio: 0.55731201171875
+    Tree Height: 354
+  - Class: rviz/Selection
+    Name: Selection
+  - Class: rviz/Tool Properties
+    Expanded:
+      - /2D Pose Estimate1
+      - /2D Nav Goal1
+      - /Publish Point1
+    Name: Tool Properties
+    Splitter Ratio: 0.5886790156364441
+  - Class: rviz/Views
+    Expanded:
+      - /Current View1
+    Name: Views
+    Splitter Ratio: 0.5
+  - Class: rviz/Time
+    Name: Time
+    SyncMode: 0
+    SyncSource: ""
+  - Class: rviz_plugin_tutorials/Teleop
+    Name: Teleop
+    Topic: /r1/cmd_vel
+  - Class: rviz_plugin_tutorials/Teleop
+    Name: Teleop
+    Topic: /r2/cmd_vel
+Preferences:
+  PromptSaveOnExit: true
+Toolbars:
+  toolButtonStyle: 2
+Visualization Manager:
+  Class: ""
+  Displays:
+    - Alpha: 0.5
+      Cell Size: 1
+      Class: rviz/Grid
+      Color: 160; 160; 164
+      Enabled: true
+      Line Style:
+        Line Width: 0.029999999329447746
+        Value: Lines
+      Name: Grid
+      Normal Cell Count: 0
+      Offset:
+        X: 0
+        Y: 0
+        Z: 0
+      Plane: XY
+      Plane Cell Count: 80
+      Reference Frame: <Fixed Frame>
+      Value: true
+    - Alpha: 0.699999988079071
+      Class: rviz/Map
+      Color Scheme: map
+      Draw Behind: false
+      Enabled: true
+      Name: Map
+      Topic: /simul_map
+      Unreliable: false
+      Use Timestamp: false
+      Value: true
+    - Class: rviz/TF
+      Enabled: true
+      Frame Timeout: 15
+      Frames:
+        All Enabled: false
+        Azul1/Lidar2DAzul1:
+          Value: true
+        Azul1/base_footprint:
+          Value: true
+        Azul1/base_link:
+          Value: true
+        Azul1/odom:
+          Value: true
+        Azul2/Lidar2DAzul2:
+          Value: true
+        Azul2/base_footprint:
+          Value: true
+        Azul2/base_link:
+          Value: true
+        Azul2/odom:
+          Value: true
+        Azul3/Lidar2DAzul3:
+          Value: true
+        Azul3/base_footprint:
+          Value: true
+        Azul3/base_link:
+          Value: true
+        Azul3/odom:
+          Value: true
+        Azul4/Lidar2DAzul4:
+          Value: true
+        Azul4/base_footprint:
+          Value: true
+        Azul4/base_link:
+          Value: true
+        Azul4/odom:
+          Value: true
+        PAzul/VelodyneAzul_points:
+          Value: true
+        PAzul/base_footprint:
+          Value: true
+        PAzul/base_link:
+          Value: true
+        PAzul/camera1:
+          Value: true
+        PAzul/odom:
+          Value: true
+        PRojo/VelodyneRojo_points:
+          Value: true
+        PRojo/base_footprint:
+          Value: true
+        PRojo/base_link:
+          Value: true
+        PRojo/camera1:
+          Value: true
+        PRojo/odom:
+          Value: true
+        Rojo1/Lidar2DRojo1:
+          Value: true
+        Rojo1/base_footprint:
+          Value: true
+        Rojo1/base_link:
+          Value: true
+        Rojo1/odom:
+          Value: true
+        Rojo2/Lidar2DRojo2:
+          Value: true
+        Rojo2/base_footprint:
+          Value: true
+        Rojo2/base_link:
+          Value: true
+        Rojo2/odom:
+          Value: true
+        Rojo3/Lidar2DRojo3:
+          Value: true
+        Rojo3/base_footprint:
+          Value: true
+        Rojo3/base_link:
+          Value: true
+        Rojo3/odom:
+          Value: true
+        Rojo4/Lidar2DRojo4:
+          Value: true
+        Rojo4/base_footprint:
+          Value: true
+        Rojo4/base_link:
+          Value: true
+        Rojo4/odom:
+          Value: true
+        map:
+          Value: true
+        world:
+          Value: true
+      Marker Alpha: 1
+      Marker Scale: 1
+      Name: TF
+      Show Arrows: false
+      Show Axes: true
+      Show Names: false
+      Tree:
+        world:
+          map:
+            Azul1/odom:
+              Azul1/base_link:
+                Azul1/Lidar2DAzul1:
+                  {}
+                Azul1/base_footprint:
+                  {}
+            Azul2/odom:
+              Azul2/base_link:
+                Azul2/Lidar2DAzul2:
+                  {}
+                Azul2/base_footprint:
+                  {}
+            Azul3/odom:
+              Azul3/base_link:
+                Azul3/Lidar2DAzul3:
+                  {}
+                Azul3/base_footprint:
+                  {}
+            Azul4/odom:
+              Azul4/base_link:
+                Azul4/Lidar2DAzul4:
+                  {}
+                Azul4/base_footprint:
+                  {}
+            PAzul/odom:
+              PAzul/base_link:
+                PAzul/VelodyneAzul_points:
+                  {}
+                PAzul/base_footprint:
+                  {}
+                PAzul/camera1:
+                  {}
+            PRojo/odom:
+              PRojo/base_link:
+                PRojo/VelodyneRojo_points:
+                  {}
+                PRojo/base_footprint:
+                  {}
+                PRojo/camera1:
+                  {}
+            Rojo1/odom:
+              Rojo1/base_link:
+                Rojo1/Lidar2DRojo1:
+                  {}
+                Rojo1/base_footprint:
+                  {}
+            Rojo2/odom:
+              Rojo2/base_link:
+                Rojo2/Lidar2DRojo2:
+                  {}
+                Rojo2/base_footprint:
+                  {}
+            Rojo3/odom:
+              Rojo3/base_link:
+                Rojo3/Lidar2DRojo3:
+                  {}
+                Rojo3/base_footprint:
+                  {}
+            Rojo4/odom:
+              Rojo4/base_link:
+                Rojo4/Lidar2DRojo4:
+                  {}
+                Rojo4/base_footprint:
+                  {}
+      Update Interval: 0
+      Value: true
+    - Alpha: 1
+      Autocompute Intensity Bounds: true
+      Autocompute Value Bounds:
+        Max Value: 10
+        Min Value: -10
+        Value: true
+      Axis: Z
+      Channel Name: z
+      Class: rviz/LaserScan
+      Color: 255; 255; 255
+      Color Transformer: Intensity
+      Decay Time: 0
+      Enabled: true
+      Invert Rainbow: false
+      Max Color: 255; 255; 255
+      Min Color: 0; 0; 0
+      Name: LaserScan
+      Position Transformer: XYZ
+      Queue Size: 10
+      Selectable: true
+      Size (Pixels): 3
+      Size (m): 0.10000000149011612
+      Style: Flat Squares
+      Topic: /r1/laser1
+      Unreliable: false
+      Use Fixed Frame: true
+      Use rainbow: true
+      Value: true
+    - Alpha: 1
+      Autocompute Intensity Bounds: true
+      Autocompute Value Bounds:
+        Max Value: 10
+        Min Value: -10
+        Value: true
+      Axis: Z
+      Channel Name: z
+      Class: rviz/LaserScan
+      Color: 255; 255; 255
+      Color Transformer: Intensity
+      Decay Time: 0
+      Enabled: true
+      Invert Rainbow: false
+      Max Color: 0; 136; 255
+      Min Color: 0; 136; 255
+      Name: LaserScan
+      Position Transformer: XYZ
+      Queue Size: 10
+      Selectable: true
+      Size (Pixels): 3
+      Size (m): 0.10000000149011612
+      Style: Flat Squares
+      Topic: /r2/laser1
+      Unreliable: false
+      Use Fixed Frame: true
+      Use rainbow: false
+      Value: true
+    - Class: rviz/MarkerArray
+      Enabled: true
+      Marker Topic: /r1/chassis_markers
+      Name: MarkerArray
+      Namespaces:
+        {}
+      Queue Size: 100
+      Value: true
+    - Class: rviz/MarkerArray
+      Enabled: true
+      Marker Topic: /r2/chassis_markers
+      Name: MarkerArray
+      Namespaces:
+        {}
+      Queue Size: 100
+      Value: true
+    - Class: rviz/MarkerArray
+      Enabled: true
+      Marker Topic: /Azul1/chassis_markers
+      Name: MarkerArray
+      Namespaces:
+        mvsim.chassis_shape: true
+        mvsim.chassis_shape.wheel0: true
+        mvsim.chassis_shape.wheel1: true
+        mvsim.chassis_shape.wheel2: true
+        mvsim.chassis_shape.wheel3: true
+      Queue Size: 100
+      Value: true
+  Enabled: true
+  Global Options:
+    Background Color: 48; 48; 48
+    Default Light: true
+    Fixed Frame: map
+    Frame Rate: 30
+  Name: root
+  Tools:
+    - Class: rviz/Interact
+      Hide Inactive Objects: true
+    - Class: rviz/MoveCamera
+    - Class: rviz/Select
+    - Class: rviz/FocusCamera
+    - Class: rviz/Measure
+    - Class: rviz/SetInitialPose
+      Theta std deviation: 0.2617993950843811
+      Topic: /initialpose
+      X std deviation: 0.5
+      Y std deviation: 0.5
+    - Class: rviz/SetGoal
+      Topic: /move_base_simple/goal
+    - Class: rviz/PublishPoint
+      Single click: true
+      Topic: /clicked_point
+  Value: true
+  Views:
+    Current:
+      Class: rviz/Orbit
+      Distance: 13.793733596801758
+      Enable Stereo Rendering:
+        Stereo Eye Separation: 0.05999999865889549
+        Stereo Focal Distance: 1
+        Swap Stereo Eyes: false
+        Value: false
+      Field of View: 0.7853981852531433
+      Focal Point:
+        X: -1.9685348272323608
+        Y: 0.36762338876724243
+        Z: 1.0655173063278198
+      Focal Shape Fixed Size: true
+      Focal Shape Size: 0.05000000074505806
+      Invert Z Axis: false
+      Name: Current View
+      Near Clip Distance: 0.009999999776482582
+      Pitch: 0.7297970652580261
+      Target Frame: <Fixed Frame>
+      Yaw: 1.47540283203125
+    Saved: ~
+Window Geometry:
+  Displays:
+    collapsed: false
+  Height: 876
+  Hide Left Dock: false
+  Hide Right Dock: true
+  QMainWindow State: 000000ff00000000fd000000040000000000000156000002cefc020000000afb0000001200530065006c0065006300740069006f006e00000001e10000009b0000005c00fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c006100790073010000003d0000019f000000c900fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261fb0000000c00540065006c0065006f007001000001e20000009c0000006e00fffffffb0000000c00540065006c0065006f00700100000284000000870000006e00ffffff000000010000010f000002e2fc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a005600690065007700730000000028000002e2000000a400fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e10000019700000003000005ff0000003efc0100000002fb0000000800540069006d00650100000000000005ff000003bc00fffffffb0000000800540069006d00650100000000000004500000000000000000000004a3000002ce00000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  Selection:
+    collapsed: false
+  Teleop:
+    collapsed: false
+  Time:
+    collapsed: false
+  Tool Properties:
+    collapsed: false
+  Views:
+    collapsed: true
+  Width: 1535
+  X: 905
+  Y: 80
