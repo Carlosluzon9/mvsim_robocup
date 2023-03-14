@@ -298,8 +298,9 @@
 		<zmax>0.23</zmax>
 		<shape_from_visual/>
 		<visual>
-			<model_uri>../models/pelota.dae</model_uri> <!-- Modelo 3D de la pelota-->
+			<model_uri>../models/pelotaverde.dae</model_uri> <!-- Modelo 3D de la pelota-->
 		</visual>
+		<mesh_color>#0000FF</mesh_color>
 		<publish>		
 			<publish_pose_topic>/pelota/pose</publish_pose_topic>
 			<publish_pose_period>50e-3</publish_pose_period>
