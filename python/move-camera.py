@@ -121,7 +121,7 @@ def main():
         rospy.Subscriber(image_topic, Image, image_callback)
         client.subscribeTopic("/PRojo/pose", onPoseMessage)     
 
-        time.sleep(50)
+        time.sleep(50000)
     #rospy.Subscriber(image_topic, Image, image_callback)
     # Spin until ctrl + c
 

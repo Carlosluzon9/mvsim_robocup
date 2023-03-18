@@ -22,10 +22,14 @@ def onPoseRobot(msgType, msg):
     p = TimeStampedPose_pb2.TimeStampedPose()
     p.ParseFromString(bytes(msg))
     #print("[pose callback] received: pose=\n" + str(p))
-    global y_robot, x_robot, robot_yaw
+    global y_robot, x_robot, robot_yaw 
     x_robot, y_robot, robot_yaw = p.pose.x, p.pose.y, p.pose.yaw
 
 def robotPelotaAlineados():
+    global y_robot, x_robot, robot_yaw 
+    global y_pelota, x_pelota
+
+    
     x = x_pelota - x_robot #convertimos el robot en centro de coordenadas, la pelota esta en coiordenadas (x,y)
     y = y_pelota - y_robot
     #pasamos a coordenadas gaussianas
@@ -66,10 +70,10 @@ if __name__ == "__main__":
         client.subscribeTopic("/robot/pose", onPoseRobot) 
         alineados = robotPelotaAlineados()
         if alineados is "Adelante":
-            sendRobotTwistSetpoint(client, "Robot", 0.2, 0, 0)
+            sendRobotTwistSetpoint(client, "Rojo1", 0.2, 0, 0)
         elif alineados is "Izquierda": 
-            sendRobotTwistSetpoint(client, "Robot", 0, 0, -0.1)
+            sendRobotTwistSetpoint(client, "Rojo1", 0, 0, -0.1)
         else:
-            sendRobotTwistSetpoint(client, "Robot", 0, 0, 0.1)
+            sendRobotTwistSetpoint(client, "Rojo1", 0, 0, 0.1)
 
 

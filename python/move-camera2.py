@@ -5,7 +5,7 @@ from sensor_msgs.msg import Image
 from cv_bridge import CvBridge, CvBridgeError
 # OpenCV2 for saving an image
 from mvsim_comms import pymvsim_comms
-from mvsim_msgs import SrvGetPose_pb2, SrvGetPoseAnswer_pb2
+from mvsim_msgs import TimeStampedPose_pb2
 from mvsim_msgs import SrvSetControllerTwist_pb2
 import cv2
 import time
@@ -34,19 +34,19 @@ def image_callback(msg):
         ball_upper = np.array([170, 255, 120], np.uint8)
         detectarColor(cv2_img, player_lower, player_upper, "Player", blue_BGR, blue_BGR)
         x_pelota = detectarColor(cv2_img, ball_lower, ball_upper, "Pelota", red_BGR, red_BGR)
-        getRobotPose(client, "PRojo")
         if x_pelota is not None:
             if x_pelota > 340 and y_robot < 0.7:
                 print("Mover hacia la derecha")
-                sendRobotTwistSetpoint(client, "PRojo", 0.2, 0, 0)
+                sendRobotTwistSetpoint(client, "PRojo", 0.3, 0, 0)
             elif x_pelota <300 and y_robot > -0.7:
                 print("Mover a la izquierda")
-                sendRobotTwistSetpoint(client, "PRojo", -0.2, 0, 0)
+                sendRobotTwistSetpoint(client, "PRojo", -0.3, 0, 0)
             else:
                 print("Parar robot")
                 sendRobotTwistSetpoint(client, "PRojo", 0, 0, 0)
         else:
             sendRobotTwistSetpoint(client, "PRojo", 0, 0, 0)
+            print("Pelota no visible, Parar robot")
         cv2.imshow('PRojo-Deteccion de colores', cv2_img)
         cv2.imwrite('camera_image.jpeg', cv2_img)
         cv2.waitKey(50)
@@ -71,9 +71,21 @@ def detectarColor(imagencv2, HSV_lower, HSV_upper, texto, color_rectangulo, colo
                 cv2.putText(imagencv2, texto, (x, y),
                         cv2.FONT_HERSHEY_SIMPLEX,
                         1.0, color_letras)
-                return x
+                if texto == "Pelota":
+                    return x
+                else:
+                    continue
+                
+                
 
 
+def onPoseMessage(msgType, msg):
+    assert(msgType == "mvsim_msgs.TimeStampedPose")
+    p = TimeStampedPose_pb2.TimeStampedPose()
+    p.ParseFromString(bytes(msg))
+    #print("[pose callback] received: pose=\n" + str(p))
+    global y_robot
+    y_robot = p.pose.y
 
 def sendRobotTwistSetpoint(client, robotName, vx, vy, w):
     # (vx,vy) in local coordinates [m/s]
@@ -90,14 +102,6 @@ def sendRobotTwistSetpoint(client, robotName, vx, vy, w):
     # ret =
     client.callService('set_controller_twist', req.SerializeToString())
 
-def getRobotPose(client, robotName):
-    req = SrvGetPose_pb2.SrvGetPose()
-    req.objectId = robotName  # vehicle/robot/object name in MVSIM
-    ret = client.callService('get_pose', req.SerializeToString())
-    ans = SrvGetPoseAnswer_pb2.SrvGetPoseAnswer()
-    ans.ParseFromString(ret)
-    print(ans)
-
 
 
 
@@ -112,11 +116,12 @@ def main():
     image_topic = "/PRojo/camera1"
     # Set up your subscriber and define its callback
 
-    while not rospy.is_shutdown():
-        #client.subscribeTopic("/PRojo/pose", onPoseMessage)
-        rospy.Subscriber(image_topic, Image, image_callback)  
 
-        time.sleep(50)
+    #client.subscribeTopic("/PRojo/pose", onPoseMessage)
+    rospy.Subscriber(image_topic, Image, image_callback)
+    client.subscribeTopic("/PRojo/pose", onPoseMessage)     
+
+    rospy.spin()
     #rospy.Subscriber(image_topic, Image, image_callback)
     # Spin until ctrl + c
 
