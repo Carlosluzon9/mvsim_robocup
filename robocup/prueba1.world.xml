@@ -91,7 +91,7 @@
 		 	  Clases de vehículos
 	     	 ======================== -->
         
-    <include file="definitions/MSL1.vehicle.xml" /> <!-- Incluiomos el vehiculo previamente definido-->
+    <include file="definitions/MSL1.vehicle.xml" /> <!-- Incluimos el vehiculo previamente definido-->
     <include file="definitions/MSL2.vehicle.xml" />     
 	<include file="definitions/PRojo.vehicle.xml" />  
 	<include file="definitions/PAzul.vehicle.xml" />
@@ -102,7 +102,7 @@
 
 	<!-- Equipo Rojo-->
 	<vehicle name="Rojo1" class="Robot_msl">
-		<init_pose>2 2 180</init_pose>  <!-- In global coords: x,y, yaw(deg) -->
+		<init_pose>2 2 0</init_pose>  <!-- In global coords: x,y, yaw(deg) -->
 		<init_vel>0 0 0</init_vel>  <!-- In local coords: vx,vy, omega(deg/s) -->    
 		<publish>
 		  <publish_pose_topic>/Rojo1/pose</publish_pose_topic> <!-- Publicar topico con la posicion del robot-->
@@ -110,16 +110,16 @@
 		</publish>
 		<!-- Sensor -->
 		<include file="definitions/lidar2d.sensor.xml"
-		sensor_x="0.235"
+		sensor_x="-0.235"
 		sensor_z="0.15"
-		sensor_yaw="0"
+		sensor_yaw="180"
 		max_range="25.0" 
 		sensor_name="Lidar2DRojo1" />
 
     </vehicle>
 
 	<vehicle name="Rojo2" class="Robot_msl">
-		<init_pose>2 -2 180</init_pose>  
+		<init_pose>2 -2 0</init_pose>  
 		<init_vel>0 0 0</init_vel>      
 		<publish>		
 			<publish_pose_topic>/Rojo2/pose</publish_pose_topic>
@@ -127,16 +127,16 @@
 		</publish>
 		<!-- Sensor -->
 		<include file="definitions/lidar2d.sensor.xml"
-		sensor_x="0.235"
+		sensor_x="-0.235"
 		sensor_z="0.15"
-		sensor_yaw="0"
+		sensor_yaw="180"
 		max_range="25.0" 
 		sensor_name="Lidar2DRojo2" />
 
     </vehicle>
 
 	<vehicle name="Rojo3" class="Robot_msl">
-		<init_pose>6 2 180</init_pose>  
+		<init_pose>6 2 0</init_pose>  
 		<init_vel>0 0 0</init_vel>     
 		<publish>		
 			<publish_pose_topic>/Rojo3/pose</publish_pose_topic>
@@ -144,16 +144,16 @@
 		</publish>
 		<!-- Sensor -->
 		<include file="definitions/lidar2d.sensor.xml"
-		sensor_x="0.235"
+		sensor_x="-0.235"
 		sensor_z="0.15"
-		sensor_yaw="0"
+		sensor_yaw="180"
 		max_range="25.0" 
 		sensor_name="Lidar2DRojo3" />
 
     </vehicle>
 
 	<vehicle name="Rojo4" class="Robot_msl">
-		<init_pose>6 -2 180</init_pose>  
+		<init_pose>6 -2 0</init_pose>  
 		<init_vel>0 0 0</init_vel>    
 		<publish>		
 			<publish_pose_topic>/Rojo4/pose</publish_pose_topic>
@@ -161,9 +161,9 @@
 		</publish>
 		<!-- Sensor -->
 		<include file="definitions/lidar2d.sensor.xml"
-		sensor_x="0.235"
+		sensor_x="-0.235"
 		sensor_z="0.15"
-		sensor_yaw="0"
+		sensor_yaw="180"
 		max_range="25.0" 
 		sensor_name="Lidar2DRojo4" />
 
