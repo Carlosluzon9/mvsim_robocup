@@ -233,37 +233,6 @@ class moverRobot(object):
 
 
 
-
-    def setObjectPose(self, client, objectName, x, y, theta_rad):
-        # Send a set pose request:
-        req = SrvSetPose_pb2.SrvSetPose()
-        req.objectId = objectName  # vehicle/robot/object name in MVSIM
-        req.pose.x = x
-        req.pose.y = y
-        req.pose.z = 0
-        req.pose.yaw = theta_rad
-        req.pose.pitch = 0
-        req.pose.roll = 0  # math.radians(0.0)
-        # ret =
-        client.callService('set_pose', req.SerializeToString())
-    
-    def restartMatch(self):
-        self.setObjectPose(client, "Rojo1", 2, 2, 0)
-        self.setObjectPose(client, "Rojo2", 2, -2, 0)
-        self.setObjectPose(client, "Rojo3", 6, 2, 0)
-        self.setObjectPose(client, "Rojo4", 6, -2, 0)
-        self.setObjectPose(client, "PRojo", 10.3, 0, math.radians(90))
-        self.setObjectPose(client, "Azul1", -2, 2, 0)
-        self.setObjectPose(client, "Azul2", -2, -2, 0)
-        self.setObjectPose(client, "Azul3", -6, 2, 0)
-        self.setObjectPose(client, "Azul4", -6, -2, 0)
-        self.setObjectPose(client, "PAzul", -10.3, 0, math.radians(270))
-        self.setObjectPose(client, "block003", 0, 0, 0)
-        Lista = ["Rojo1", "Rojo2", "Rojo3", "Rojo4",
-              "Azul1", "Azul2", "Azul3", "Azul4",
-               "PRojo", "PAzul" ]
-        for veh in Lista:
-            sendRobotTwistSetpoint(client, veh, 0, 0, 0)
         
 
 
