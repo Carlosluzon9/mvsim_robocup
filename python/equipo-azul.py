@@ -17,7 +17,7 @@ player_lower = np.array([115, 0, 0], np.uint8)
 player_upper = np.array([170, 255, 40], np.uint8)
 ball_lower = np.array([126, 10, 30], np.uint8)
 ball_upper = np.array([170, 255, 120], np.uint8)
-
+vlineal = 0
 
 def detectarColor(imagencv2, HSV_lower, HSV_upper, texto, color_rectangulo, color_letras):
         
@@ -80,7 +80,10 @@ class moverRobot(object):
         assert(msgType == "mvsim_msgs.TimeStampedPose")
         p = TimeStampedPose_pb2.TimeStampedPose()
         p.ParseFromString(bytes(msg))
-        self.theta_robot1 = (math.pi*2 - abs(p.pose.yaw)) % (math.pi*2)
+        if p.pose.yaw < 0:
+            self.theta_robot1 = (2*math.pi - abs(p.pose.yaw)) 
+        else:
+            self.theta_robot1 = (p.pose.yaw) 
         self.x_robot1 = p.pose.x
         self.y_robot1 = p.pose.y
 
@@ -88,7 +91,10 @@ class moverRobot(object):
         assert(msgType == "mvsim_msgs.TimeStampedPose")
         p = TimeStampedPose_pb2.TimeStampedPose()
         p.ParseFromString(bytes(msg))
-        self.theta_robot2 = (math.pi*2 - abs(p.pose.yaw)) % (math.pi*2)
+        if p.pose.yaw < 0:
+            self.theta_robot2 = (2*math.pi - abs(p.pose.yaw)) 
+        else:
+            self.theta_robot2 = (p.pose.yaw) 
         self.x_robot2 = p.pose.x
         self.y_robot2 = p.pose.y
 
@@ -96,7 +102,10 @@ class moverRobot(object):
         assert(msgType == "mvsim_msgs.TimeStampedPose")
         p = TimeStampedPose_pb2.TimeStampedPose()
         p.ParseFromString(bytes(msg))
-        self.theta_robot3 = (math.pi*2 - abs(p.pose.yaw)) % (math.pi*2)
+        if p.pose.yaw < 0:
+            self.theta_robot3 = (2*math.pi - abs(p.pose.yaw)) 
+        else:
+            self.theta_robot3 = (p.pose.yaw) 
         self.x_robot3 = p.pose.x
         self.y_robot3 = p.pose.y
 
@@ -104,9 +113,13 @@ class moverRobot(object):
         assert(msgType == "mvsim_msgs.TimeStampedPose")
         p = TimeStampedPose_pb2.TimeStampedPose()
         p.ParseFromString(bytes(msg))
-        self.theta_robot4 = (math.pi*2 - abs(p.pose.yaw)) % (math.pi*2)
+        if p.pose.yaw < 0:
+            self.theta_robot4 = (2*math.pi - abs(p.pose.yaw)) 
+        else:
+            self.theta_robot4 = (p.pose.yaw) 
         self.x_robot4 = p.pose.x
         self.y_robot4 = p.pose.y
+
 
 
 
@@ -168,22 +181,37 @@ class moverRobot(object):
             if listay[index] < 0:
                 theta_rad = math.pi + theta_rad
                 print("Tercer cuadrante")
-        beta = theta_rad + 0.05
-        alfa = theta_rad - 0.05
+
         for robot in self.robots:
             if robot != self.robots[index]:
                 sendRobotTwistSetpoint(client, robot, 0, 0, 0)
             else:
                 pass
-        if beta > theta_robot > alfa:
+        print("robot es " + str(theta_robot))
+        print("pelota es " + str(theta_rad))
+        beta = (theta_robot - theta_rad)
+
+        if   -0.05 < beta < 0.05:
             print("Mover hacia adelante")
-            sendRobotTwistSetpoint(client, self.robots[index], 1, 0, 0)
-        elif theta_robot < beta:
-            print("girar a izquierda")
-            sendRobotTwistSetpoint(client, self.robots[index], 0, 0, 0.6)
+            sendRobotTwistSetpoint(client, self.robots[index], vlineal, 0, 0)
+        elif beta > 0.05:
+            if beta < math.pi:
+                sendRobotTwistSetpoint(client, self.robots[index], 0, 0, -0.6)
+                print("girar a derecha1")
+            else:
+                sendRobotTwistSetpoint(client, self.robots[index], 0, 0, 0.6)
+                print("girar a izq1")
         else:
-            sendRobotTwistSetpoint(client, self.robots[index], 0, 0, -0.6)
-            print("girar a derecha")
+            if beta > -math.pi:
+                sendRobotTwistSetpoint(client, self.robots[index], 0, 0, 0.6)
+                print("girar a dch2")
+            else:
+                sendRobotTwistSetpoint(client, self.robots[index], 0, 0, -0.6)
+                print("girar a izq2")
+        
+
+
+
    
 
 class moverPorteroAzul(object):
@@ -235,6 +263,18 @@ if __name__ == "__main__":
     client.connect()
     print("Connected successfully.")
     rospy.init_node("Equipo_azul", anonymous= True)
+    print("Indicate speed of robots (recommended 0.4-0.6):")
+
+    while True:
+        vlineal = input()
+        try:
+            float(vlineal)
+        except ValueError:
+            print("Please introduce a number")
+        else:
+            vlineal = float(vlineal)
+            break
+
 
     Start = moverRobot()
     PRojo = moverPorteroAzul()

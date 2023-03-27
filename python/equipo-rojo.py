@@ -3,7 +3,6 @@ import math
 from mvsim_msgs import SrvSetPose_pb2
 from mvsim_msgs import SrvSetControllerTwist_pb2
 from mvsim_msgs import TimeStampedPose_pb2
-from nav_msgs.msg import Odometry
 from mvsim_comms import pymvsim_comms
 from sensor_msgs.msg import Image
 from cv_bridge import CvBridge, CvBridgeError
@@ -19,7 +18,7 @@ player_lower = np.array([115, 0, 0], np.uint8)
 player_upper = np.array([170, 255, 40], np.uint8)
 ball_lower = np.array([126, 10, 30], np.uint8)
 ball_upper = np.array([170, 255, 120], np.uint8)
-
+vlineal = 0
 
 def detectarColor(imagencv2, HSV_lower, HSV_upper, texto, color_rectangulo, color_letras):
         
@@ -142,6 +141,7 @@ class moverRobot(object):
         listay = [y1, y2, y3, y4]
         listax = [x1, x2, x3, x4]
         index = get_minvalue(distancias)
+
         if index == 0:
             theta_rad =  (math.atan(y1/x1))
             theta_robot = self.theta_robot1
@@ -170,22 +170,34 @@ class moverRobot(object):
             if listay[index] < 0:
                 theta_rad = math.pi + theta_rad
                 print("Tercer cuadrante")
-        beta = theta_rad + 0.05
-        alfa = theta_rad - 0.05
+        
+
         for robot in self.robots:
             if robot != self.robots[index]:
                 sendRobotTwistSetpoint(client, robot, 0, 0, 0)
             else:
                 pass
-        if beta > theta_robot > alfa:
+        
+        beta = (theta_robot - theta_rad)
+
+        if   -0.05 < beta < 0.05:
             print("Mover hacia adelante")
-            sendRobotTwistSetpoint(client, self.robots[index], -1, 0, 0)
-        elif theta_robot < beta:
-            print("girar a izquierda")
-            sendRobotTwistSetpoint(client, self.robots[index], 0, 0, 0.6)
+            sendRobotTwistSetpoint(client, self.robots[index], -vlineal, 0, 0)
+        elif beta > 0.05:
+            if beta < math.pi:
+                sendRobotTwistSetpoint(client, self.robots[index], 0, 0, -0.6)
+                print("girar a derecha")
+            else:
+                sendRobotTwistSetpoint(client, self.robots[index], 0, 0, 0.6)
+                print("girar a izq")
         else:
-            sendRobotTwistSetpoint(client, self.robots[index], 0, 0, -0.6)
-            print("girar a derecha")
+            if beta > -math.pi:
+                sendRobotTwistSetpoint(client, self.robots[index], 0, 0, 0.6)
+                print("girar a izq")
+            else:
+                sendRobotTwistSetpoint(client, self.robots[index], 0, 0, -0.6)
+                print("girar a dch")
+        
     
         print("objetivo es: " + str(theta_rad))
 
@@ -285,6 +297,17 @@ if __name__ == "__main__":
     client.connect()
     print("Connected successfully.")
     rospy.init_node("Equipo_Rojo", anonymous= True)
+    print("Indicate speed of robots (recommended 0.4-0.6):")
+
+    while True:
+        vlineal = input()
+        try:
+            float(vlineal)
+        except ValueError:
+            print("Please introduce a number")
+        else:
+            vlineal = float(vlineal)
+            break
 
     Start = moverRobot()
     PRojo = moverPorteroRojo()
