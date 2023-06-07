@@ -309,8 +309,7 @@
 
 	<!-- Porteria-->
 	<block:class name="porteria">
-		<mass>1000</mass>							<!-- Masa y coef. friccion altos para que no se mueva-->
-		<ground_friction>100</ground_friction>
+		<static/>
 		<zmax>1.2</zmax>
         <shape_from_visual/>
 		<visual>
