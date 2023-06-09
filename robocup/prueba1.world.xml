@@ -309,7 +309,7 @@
 
 	<!-- Porteria-->
 	<block:class name="porteria">
-		<static/>
+		<static>true</static>
 		<zmax>1.2</zmax>
         <shape_from_visual/>
 		<visual>

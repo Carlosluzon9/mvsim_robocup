@@ -49,14 +49,7 @@
 
 
         <!--  Controlador del motor -->
-        <controller class="twist_pid">
-            <!-- Parametros controlador PID -->
-            <KP>1</KP>  <KI>5</KI> <I_MAX>1</I_MAX> <KD>0</KD>
-            <V>0.0</V><W>0</W>
-            <max_torque>100</max_torque>
-        </controller>
-
-
+        <controller class="twist_ideal" />
 
     </dynamics>
 
